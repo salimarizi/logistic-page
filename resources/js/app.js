@@ -4,7 +4,7 @@ window.Vue = require("vue").default;
 
 Vue.component(
   "logistic-page",
-  require("./components/LogisticPage.vue").default
+  require("./pages/LogisticPage.vue").default
 );
 
 const app = new Vue({
