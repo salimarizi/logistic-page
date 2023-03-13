@@ -1,4 +1,4 @@
-import { getUOMS } from "./apis";
+import { getUOMS } from "../../services/uom";
 
 const state = {
   uoms: [],

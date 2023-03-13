@@ -1,4 +1,4 @@
-import { getCustomers } from "./apis";
+import { getCustomers } from "../../services/customer";
 
 const state = {
   customers: [],

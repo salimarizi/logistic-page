@@ -1,4 +1,4 @@
-import { getInvoices } from "./apis";
+import { getInvoices } from "../../services/invoice";
 
 const state = {
   invoices: [],

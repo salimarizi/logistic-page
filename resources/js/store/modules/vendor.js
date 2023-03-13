@@ -1,4 +1,4 @@
-import { getVendors } from "./apis";
+import { getVendors } from "../../services/vendor";
 
 const state = {
   vendors: [],

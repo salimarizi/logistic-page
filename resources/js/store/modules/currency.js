@@ -1,4 +1,4 @@
-import { getCurrencies } from "./apis";
+import { getCurrencies } from "../../services/currency";
 
 const state = {
   currencies: [],

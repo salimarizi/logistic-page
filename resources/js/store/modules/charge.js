@@ -1,4 +1,4 @@
-import { getCharges } from "./apis";
+import { getCharges } from "../../services/charge";
 
 const state = {
   charges: [],
