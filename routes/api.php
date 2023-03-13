@@ -39,3 +39,38 @@ Route::get('charges', function (Request $request) {
         "data" => ["Something"]
     ]);
 });
+
+Route::get('vendors', function (Request $request) {
+    return Response([
+        "status" => "success",
+        "data" => [[
+            "id" => "V001",
+            "assigned" => "Amarit & Associated Logistics Co Ltd",
+            "attn" => "John Smith",
+            "quotation_no" => "ABC-123-01",
+            "address" => "Marubeni-Itochu Tublars Asia Pte Ltd (2 Shenton Way, SGX Centre 1, #07-01 (S) (068804)"
+        ]]
+    ]);
+});
+
+Route::get('invoices', function (Request $request) {
+    return Response([
+        "status" => "success",
+        "data" => ["MITO", "ADVAN"]
+    ]);
+});
+
+Route::get('customers', function (Request $request) {
+    return Response([
+        "status" => "success",
+        "data" => [[
+            "id" => "C001",
+            "contact" => "ADNOC-ONSHORE",
+            "po_numbers" => [
+                "A123XXHTA0192",
+                "A123XXHTA0193",
+                "A123XXHTA0195"
+            ]
+        ]]
+    ]);
+});

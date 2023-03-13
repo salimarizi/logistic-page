@@ -24,8 +24,18 @@
             <div class="w-4/12 flex flex-col">
               <div>Assigned Vendor</div>
               <div class="w-full">
-                <select name="" class="w-full bg-light p-2 rounded-md border">
-                  <option value="">Amarit & Associated Logistics Co Ltd</option>
+                <select
+                  class="w-full bg-light p-2 rounded-md border"
+                  @change="selectVendor($event)"
+                >
+                  <option value="">Choose Vendor</option>
+                  <option
+                    :value="vendor.id"
+                    v-for="(vendor, index) of vendors"
+                    :key="index"
+                  >
+                    {{ vendor.assigned }}
+                  </option>
                 </select>
               </div>
             </div>
@@ -36,6 +46,8 @@
                   type="text"
                   class="w-full bg-light p-2 rounded-md border"
                   placeholder="Attention Name"
+                  v-model="attn"
+                  disabled
                 />
               </div>
             </div>
@@ -45,18 +57,25 @@
                 <input
                   type="text"
                   class="w-full bg-light p-2 rounded-md border"
-                  placeholder="Attention Name"
+                  placeholder="Quotation No."
+                  v-model="quotation_no"
+                  disabled
                 />
               </div>
             </div>
             <div class="w-3/12 flex flex-col">
               <div>Invoice To</div>
               <div class="w-full">
-                <input
-                  type="text"
-                  class="w-full bg-light p-2 rounded-md border"
-                  placeholder="Attention Name"
-                />
+                <select name="" class="w-full bg-light p-2 rounded-md border">
+                  <option value="">Choose Invoice</option>
+                  <option
+                    :value="invoice"
+                    v-for="(invoice, index) of invoices"
+                    :key="index"
+                  >
+                    {{ invoice }}
+                  </option>
+                </select>
               </div>
             </div>
           </div>
@@ -67,6 +86,8 @@
                 type="text"
                 class="w-full bg-light p-2 rounded-md border"
                 placeholder="Vendor Address"
+                v-model="address"
+                disabled
               />
             </div>
           </div>
@@ -75,8 +96,18 @@
           <div class="w-full flex flex-col">
             <div>Customer Contact</div>
             <div class="w-full">
-              <select name="" class="w-full bg-light p-2 rounded-md border">
-                <option value="">ADNOC-ONSHORE</option>
+              <select
+                class="w-full bg-light p-2 rounded-md border"
+                @change="selectCustomer($event)"
+              >
+                <option value="">Choose Customer</option>
+                <option
+                  :value="customer.id"
+                  v-for="(customer, index) of customers"
+                  :key="index"
+                >
+                  {{ customer.contact }}
+                </option>
               </select>
             </div>
           </div>
@@ -84,7 +115,14 @@
             <div>Customer PO No.</div>
             <div class="w-full">
               <select name="" class="w-full bg-light p-2 rounded-md border">
-                <option value="">A123XXHTA0192</option>
+                <option value="">Choose PO Number</option>
+                <option
+                  :value="po_number"
+                  v-for="(po_number, index) of po_numbers"
+                  :key="index"
+                >
+                  {{ po_number }}
+                </option>
               </select>
             </div>
           </div>
@@ -93,3 +131,66 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "VendorDetail",
+  data() {
+    return {
+      attn: "",
+      quotation_no: "",
+      address: "",
+      po_numbers: [],
+    };
+  },
+  computed: {
+    vendors() {
+      return this.$store.getters.getterVendors;
+    },
+    invoices() {
+      return this.$store.getters.getterInvoices;
+    },
+    customers() {
+      return this.$store.getters.getterCustomers;
+    },
+  },
+  created() {
+    this.getVendors();
+    this.getInvoices();
+    this.getCustomers();
+  },
+  methods: {
+    getInvoices() {
+      this.$store.dispatch("getInvoices");
+    },
+    getVendors() {
+      this.$store.dispatch("getVendors");
+    },
+    getCustomers() {
+      this.$store.dispatch("getCustomers");
+    },
+    selectVendor(event) {
+      const vendor = this.vendors.find(
+        (vendor) => vendor.id === event.target.value
+      );
+
+      if (vendor) {
+        this.attn = vendor.attn;
+        this.quotation_no = vendor.quotation_no;
+        this.address = vendor.address;
+      } else {
+        this.attn = "";
+        this.quotation_no = "";
+        this.address = "";
+      }
+    },
+    selectCustomer(event) {
+      const customer = this.customers.find(
+        (customer) => customer.id === event.target.value
+      );
+
+      this.po_numbers = customer ? customer.po_numbers : [];
+    },
+  },
+};
+</script>

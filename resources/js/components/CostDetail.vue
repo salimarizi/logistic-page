@@ -98,7 +98,12 @@
               {{ charge }}
             </option>
           </select>
-          <button class="px-4 bg-secondary text-gray-600" @click="deleteRow(idx)">-</button>
+          <button
+            class="px-4 bg-secondary text-gray-600"
+            @click="deleteRow(idx)"
+          >
+            -
+          </button>
         </div>
       </div>
 

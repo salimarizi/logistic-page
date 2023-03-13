@@ -16,3 +16,18 @@ export const getCharges = async () => {
   const result = await axios.get(`${API}/charges`);
   return result;
 };
+
+export const getVendors = async () => {
+  const result = await axios.get(`${API}/vendors`);
+  return result;
+};
+
+export const getInvoices = async () => {
+  const result = await axios.get(`${API}/invoices`);
+  return result;
+};
+
+export const getCustomers = async () => {
+  const result = await axios.get(`${API}/customers`);
+  return result;
+};
