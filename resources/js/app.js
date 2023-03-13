@@ -1,4 +1,6 @@
 require("./bootstrap");
+import store from "./store";
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 /* import font awesome icon component */
@@ -19,4 +21,5 @@ Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 const app = new Vue({
   el: "#app",
+  store,
 });
